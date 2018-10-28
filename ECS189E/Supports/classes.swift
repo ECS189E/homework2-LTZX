@@ -43,7 +43,7 @@ struct Storage {
 
 class Wallet {
     var userName: String?
-    var totalAmount: Double?
+    var totalAmount: Double
     var phoneNumber: String
     var accounts: [Account]
     
@@ -57,17 +57,26 @@ class Wallet {
     init(data: [String: Any], ifGenerateAccounts: Bool) {
         let walletData = data["user"] as! [String:Any]
         self.userName = walletData["name"] as? String
-        self.totalAmount = walletData["totalAmount"] as? Double
+        self.totalAmount = 0.0
         self.phoneNumber = walletData["e164_phone_number"] as! String
         self.accounts = [Account]()
+
         if ifGenerateAccounts {
-            var newTotal = 0.0
-            for i in 0 ..< Int.random(in: 5 ..< 12) {
-                let newAccount = Account(index: i, randomAmount: true)
-                self.accounts.append(newAccount)
-                newTotal = newTotal + newAccount.amount
+            for i in 0 ..< Int.random(in: 8 ..< 16) {
+                self.accounts.append(Account(index: i, randomAmount: true))
             }
-            self.totalAmount = newTotal
+        } else {
+            if let accountsData = walletData["accounts"] as? [[String: Any]] {
+                for each in accountsData {
+                    self.accounts.append(Account.init(data: each))
+                }
+            } else {
+                print("No account data found.")
+            }
+        }
+        
+        for i in 0 ..< self.accounts.count {
+            self.totalAmount += self.accounts[i].amount
         }
     }
     
@@ -75,7 +84,7 @@ class Wallet {
         print("=======================")
         print("user:\(self.userName ?? "")")
         print("phone number:\(self.phoneNumber)")
-        print("totle amount:\(self.totalAmount ?? 0.0)")
+        print("totle amount:\(self.totalAmount)")
         print("List of Accounts:")
         for account in self.accounts {
             print("  \(account.name) has \(account.amount)")
@@ -88,6 +97,13 @@ class Account {
     var ID: String
     var amount: Double
     
+    init() {
+        self.name = ""
+        self.ID = UUID().uuidString
+        self.amount = 0
+    }
+    
+    // For random generating
     init(index: Int, randomAmount: Bool) {
         self.name = "Account " + String(index)
         self.ID = UUID().uuidString
@@ -95,5 +111,12 @@ class Account {
         if randomAmount {
             self.amount = round(Double.random(in: 10 ..< 10000) * 100) / 100
         }
+    }
+    
+    // For data reading
+    init(data: [String: Any]) {
+        self.name = data["name"] as? String ?? ""
+        self.ID = data["ID"] as? String ?? ""
+        self.amount = Double(data["amount"] as? String ?? "") ?? 0.0
     }
 }

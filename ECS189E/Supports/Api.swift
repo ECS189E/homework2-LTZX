@@ -93,6 +93,13 @@ struct Api {
                 completion: completion)
     }
     
+    static func setAccounts(accounts: [Account], completion: @escaping ApiCompletion) {
+        let serverAccounts = accounts.map { ["name": $0.name, "ID": $0.ID, "amount": String($0.amount)] }
+        ApiCall(endpoint: "/user",
+                parameters: ["accounts": serverAccounts],
+                completion: completion)
+    }
+    
     static func user(completion: @escaping ApiCompletion) {
         ApiCall(endpoint: "/user",
                 parameters: [:],
