@@ -18,15 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="CMb-62-CF9">
-                                <rect key="frame" x="94" y="240" width="187.5" height="187.5"/>
+                                <rect key="frame" x="75" y="221" width="225" height="225"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CMb-62-CF9" secondAttribute="height" multiplier="1:1" id="oxq-Xd-izw"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="CMb-62-CF9" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.5" id="5bY-ms-hYf"/>
+                            <constraint firstItem="CMb-62-CF9" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.6" id="5bY-ms-hYf"/>
                             <constraint firstItem="CMb-62-CF9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SLx-3W-3Kx"/>
                             <constraint firstItem="CMb-62-CF9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yus-6W-ngx"/>
                         </constraints>
@@ -39,6 +39,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch.png" width="303" height="303"/>
+        <image name="launch.png" width="374" height="374"/>
     </resources>
 </document>

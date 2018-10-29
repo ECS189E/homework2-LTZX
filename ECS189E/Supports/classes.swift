@@ -119,4 +119,11 @@ class Account {
         self.ID = data["ID"] as? String ?? ""
         self.amount = Double(data["amount"] as? String ?? "") ?? 0.0
     }
+    
+    // For creating new account
+    init(name: String) {
+        self.name = name
+        self.ID = UUID().uuidString
+        self.amount = 0
+    }
 }

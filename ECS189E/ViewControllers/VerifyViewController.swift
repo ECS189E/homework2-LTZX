@@ -38,7 +38,7 @@ class VerifyViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextOnTap(_ sender: UIButton) {
         self.view.endEditing(true)
         guard let code = inputField.text else {
-            self.errorInfo.text = "Please enter the code we sent you via SMS"
+            self.errorInfo.text = "Please enter the code we sent you via SMS."
             self.errorInfo.textColor = UIColor.red
             self.errorInfo.isHidden = false
             return
@@ -58,7 +58,7 @@ class VerifyViewController: UIViewController, UITextFieldDelegate {
             
             // Present Success Info
             self.errorInfo.text = "You are logged in!"
-            self.errorInfo.textColor = UIColor.green
+            self.errorInfo.textColor = UIColor.init(red: 0.0, green: 200/255, blue: 0.0, alpha: 1.0)
             self.errorInfo.isHidden = false
         }
     }
